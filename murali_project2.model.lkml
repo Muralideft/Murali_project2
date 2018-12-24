@@ -10,7 +10,7 @@ datagroup: murali_project2_default_datagroup {
 
 persist_with: murali_project2_default_datagroup
 
-explore: customer {}
+
 
 explore: order {
   join: customer {
@@ -21,6 +21,7 @@ explore: order {
 }
 
 explore: order_item {
+  view_label: "Order_itemsss"
   join: order {
     type: left_outer
     sql_on: ${order_item.order_id} = ${order.id} ;;
@@ -34,6 +35,8 @@ explore: order_item {
   }
 
   join: customer {
+
+    from: customer
     type: left_outer
     sql_on: ${order.customer_id} = ${customer.id} ;;
     relationship: many_to_one
@@ -55,3 +58,11 @@ explore: product {
 }
 
 explore: supplier {}
+explore: Test {
+  view_name: order_item
+  join: order {
+    type: left_outer
+    sql_on: ${order_item.order_id} = ${order.id} ;;
+    relationship: many_to_one
+  }
+}
